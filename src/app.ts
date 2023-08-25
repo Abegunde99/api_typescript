@@ -6,8 +6,6 @@ import morgan from 'morgan';
 import Controller from '@/utils/interfaces/controller.interface';
 import ErrorMiddleware from '@/middleware/error.middleware';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
-dotenv.config();
 
 class App {
     public express: Application;
@@ -42,9 +40,16 @@ class App {
         this.express.use(ErrorMiddleware)
     }
 
+    // private initializeDatabaseConnection(): void {
+    //     const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
+    //     mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
+    // }
+
     private initializeDatabaseConnection(): void { 
-        const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
-        mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
+        const { MONGODB_URI } = process.env;
+        mongoose.connect(`${MONGODB_URI}`)
+            .then(() => console.log('Database connected'))
+            .catch((error) => console.log(error));
     }
 
     public listen(): void {
