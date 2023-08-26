@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import HttpException from '@/utils/exceptions/http.exception';
+import HttpException from '../utils/exceptions/http.exception';
 
 function ErrorMiddleware(error: HttpException, request: Request, response: Response, next: NextFunction): void {
     const status = error.status || 500;

@@ -1,5 +1,5 @@
-import PostModel from '@/resources/post/post.model'
-import Post from '@/resources/post/post.interface'
+import PostModel from './post.model'
+import Post from './post.interface'
 
 class PostService {
     private post = PostModel;

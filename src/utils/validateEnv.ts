@@ -1,4 +1,4 @@
-const { cleanEnv, str, port } = require('enclean');
+const { cleanEnv, str, port } = require('envalid');
 
 function validateEnv(): void {
     cleanEnv(process.env, {
